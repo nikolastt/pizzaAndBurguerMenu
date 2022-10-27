@@ -1,4 +1,5 @@
 import { GetStaticProps } from "next";
+import Link from "next/link";
 import React from "react";
 import { getPizzas, IPizza } from "../assets/functionsDataBase";
 import CardItem from "../components/CardItem";
@@ -15,13 +16,13 @@ const PizzaMenu: React.FC<IPizzaMenu> = ({ pizzas }) => {
   return (
     <div>
       <Header title="Pizz" />
-      <div className="px-3 space-y-6 mb-28 md:px-6 space-y-9">
+      <div className="px-3 space-y-6 mb-28 md:px-6 md:space-y-9">
         {arrayPizzas.map((pizza, i) => (
-          <CardItem
-            key={pizza.name}
-            pizza={pizza}
-            reverse={i % 2 === 0 ? false : true}
-          />
+          <Link href={`/pizzas/${pizza.id}`} passHref key={pizza.name}>
+            <a>
+              <CardItem pizza={pizza} reverse={i % 2 === 0 ? false : true} />
+            </a>
+          </Link>
         ))}
       </div>
       <Footer />

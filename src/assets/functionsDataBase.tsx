@@ -9,6 +9,7 @@ export interface IPizza {
   img: string;
   ingredients: string;
   name: string;
+  id: string;
 }
 
 export const getPizzas = async () => {
@@ -16,7 +17,7 @@ export const getPizzas = async () => {
   const responsePizzas = await getDocs(collection(db, "pizzas"));
 
   responsePizzas.forEach((pizza) => {
-    arrayPizzas.push(pizza.data() as IPizza);
+    arrayPizzas.push({ ...pizza.data(), id: pizza.id } as IPizza);
   });
 
   return arrayPizzas;
