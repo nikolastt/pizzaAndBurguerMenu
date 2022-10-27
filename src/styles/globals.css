@@ -1,0 +1,20 @@
+@import url('https://fonts.googleapis.com/css2?family=Mr+De+Haviland&family=Sanchez&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Teko&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    html{
+        @apply text-white bg-gray-900
+    }
+}
+
+@layer components{
+    label{
+        @apply mb-2
+    }
+
+    
+}
