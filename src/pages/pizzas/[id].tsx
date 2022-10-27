@@ -1,5 +1,6 @@
 import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { GetStaticPaths, GetStaticProps } from "next";
+import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import React from "react";
 import { IPizza } from "../../assets/functionsDataBase";
@@ -19,6 +20,11 @@ interface IPizzas {
 
 const Pizzas: React.FC<IPizzas> = ({ pizza }) => {
   const pizzaData = JSON.parse(pizza) as IPizza;
+  const router = useRouter();
+
+  if (router.isFallback) {
+    return <div>Loading...</div>;
+  }
 
   return (
     <div>
@@ -35,7 +41,7 @@ export default Pizzas;
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
     paths: [],
-    fallback: true,
+    fallback: "blocking",
   };
 };
 
