@@ -40,16 +40,6 @@ const Footer: React.FC = () => {
           />
         </a>
       </Link>
-
-      <Link href="/addItemMenu">
-        <a>
-          <IoIosAdd
-            size={30}
-            color={path === "/addItemMenu" ? "#d88c43" : "white"}
-            className="cursor-pointer hover:scale-125 duration-300"
-          />
-        </a>
-      </Link>
     </div>
   );
 };

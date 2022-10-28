@@ -18,3 +18,22 @@
 
     
 }
+
+.swiper-button-next {    
+    color: #d88c43 !important;
+}
+
+.swiper-button-prev {    
+    color: #d88c43 !important;
+}
+
+.swiper-pagination {
+    stroke : #d88c43 !important;
+
+}
+
+html:root {    
+    --swiper-navigation-size: 25px;   
+    --swiper-theme-color: #d88c43 !important; 
+}
+

@@ -80,23 +80,21 @@ const Hamburguer: React.FC<IHamburguers> = ({ hamburguerData }) => {
 
         <div className="mx-6 mt-6">
           <h1 className="text-primary-500 font-['Teko'] text-5xl  pt-3 ">
-            <span className="flex justify-between">
-              {hamburguer.name}
-              <div className="flex items-center">
-                <StarRatings
-                  rating={evaluation || 0}
-                  starRatedColor="#cacaca"
-                  starEmptyColor="#464646"
-                  starDimension="15px"
-                  starSpacing="3px"
-                  numberOfStars={5}
-                />
-                <span className="text-sm text-white ml-2 mt-1">
-                  ( {hamburguer.rate?.qnt || 0} )
-                </span>
-              </div>
-            </span>
+            <span className="flex justify-between">{hamburguer.name}</span>
           </h1>
+          <div className="flex items-center">
+            <StarRatings
+              rating={evaluation || 0}
+              starRatedColor="#cacaca"
+              starEmptyColor="#464646"
+              starDimension="15px"
+              starSpacing="3px"
+              numberOfStars={5}
+            />
+            <span className="text-sm text-white ml-2 mt-1">
+              ( {hamburguer.rate?.qnt || 0} )
+            </span>
+          </div>
 
           <p className="text-lg font-thin mt-6">{hamburguer.ingredients}</p>
 

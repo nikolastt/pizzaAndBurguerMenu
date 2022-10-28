@@ -5,6 +5,9 @@ import {
   getDoc,
   getDocs,
   increment,
+  limit,
+  orderBy,
+  query,
   updateDoc,
 } from "firebase/firestore";
 import { db } from "../services/firebase";
@@ -48,4 +51,41 @@ export const rateProduct = async (
     "rate.qnt": increment(1),
     "rate.rate": increment(rate),
   });
+};
+
+export const getMostAvaliablePizzas = async () => {
+  const arrayMostAvaliableProducts: IPizza[] = [];
+  const q = query(collection(db, "pizzas"), orderBy("rate.rate"), limit(2));
+  const result = await getDocs(q);
+  result.forEach((result) => {
+    arrayMostAvaliableProducts.push({
+      ...result.data(),
+      id: result.id,
+    } as IPizza);
+  });
+  return arrayMostAvaliableProducts;
+};
+
+export const getMostAvaliableHamburguers = async () => {
+  const arrayMostAvaliableProducts: IPizza[] = [];
+  const q = query(
+    collection(db, "hamburguers"),
+    orderBy("rate.rate"),
+    limit(2)
+  );
+  const result = await getDocs(q);
+  result.forEach((result) => {
+    arrayMostAvaliableProducts.push({
+      ...result.data(),
+      id: result.id,
+    } as IPizza);
+  });
+  return arrayMostAvaliableProducts;
+};
+
+export const getPass = async () => {
+  const passRef = doc(db, "senha", "senha");
+  const result = await getDoc(passRef);
+  const pass = result.data();
+  return pass;
 };
