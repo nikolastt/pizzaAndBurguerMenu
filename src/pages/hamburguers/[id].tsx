@@ -100,14 +100,14 @@ const Hamburguer: React.FC<IHamburguers> = ({ hamburguerData }) => {
 
           <p className="text-lg font-thin mt-6">{hamburguer.ingredients}</p>
 
-          <div className="flex flex-col my-12 ">
+          <div className="flex flex-col pt-3 pb-12 ">
             <h1 className="font-['Teko'] text-primary-500 text-4xl">
               R$: {hamburguer.amountHamburguer}{" "}
             </h1>
           </div>
         </div>
 
-        <div className="flex flex-col items-center ">
+        <div className="flex flex-col items-center mb-36">
           <h1 className="font-['Teko'] text-primary-500 text-4xl">
             Avalie este sabor
           </h1>
