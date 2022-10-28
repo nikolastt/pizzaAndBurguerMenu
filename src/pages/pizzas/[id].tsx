@@ -74,7 +74,7 @@ const Pizzas: React.FC<IPizzas> = ({ pizzaData }) => {
   return (
     <div className="">
       <Header title={pizza.name} />
-      <div>
+      <div className="max-w-2xl mx-auto">
         <div className="flex justify-center mt-6">
           <img src={pizza.img} alt="" className="w-48 h-48 rounded-full" />
         </div>

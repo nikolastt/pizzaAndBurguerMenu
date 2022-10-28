@@ -15,7 +15,7 @@ const CardItemSwiper: React.FC<ICardItemSwiper> = ({
   typeProduct,
 }) => {
   return (
-    <div className="bg-[#030612] shadow  w-[85%] mx-auto mb-10 rounded-3xl p-6 cursor-pointer">
+    <div className="bg-[#030612] shadow  w-[85%] mx-auto mb-10 rounded-3xl p-6 cursor-pointer ">
       <img src={img} alt={name} className="w-36 h-36 rounded-full mx-auto" />
 
       <div>

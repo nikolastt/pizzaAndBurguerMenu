@@ -31,7 +31,7 @@ const Home: NextPage<IHome> = ({ arrayHamburguers, arrayPizzas }) => {
   const hamburguers = JSON.parse(arrayHamburguers) as IHamburguer[];
 
   return (
-    <div className="bg-gray-900 h-screen">
+    <div className="bg-gray-900 h-screen max-w-2xl mx-auto">
       <Head>
         <title></title>
         <meta name="description" content="" />
@@ -40,12 +40,12 @@ const Home: NextPage<IHome> = ({ arrayHamburguers, arrayPizzas }) => {
 
       <Header title="Menu" />
 
-      <div className="mt-24">
+      <div className="mt-24 ">
         <h1 className="text-center font-['Teko'] text-primary-500 text-6xl">
           MAIS AVALIADOS
         </h1>
 
-        <div className="px-3 mt-6">
+        <div className="px-3 mt-6 pb-20">
           <Swiper
             effect={"flip"}
             grabCursor={true}

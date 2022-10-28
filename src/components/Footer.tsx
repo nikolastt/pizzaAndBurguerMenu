@@ -10,7 +10,7 @@ const Footer: React.FC = () => {
   const path = router.asPath;
 
   return (
-    <div className="bg-[#030612] rounded-t-3xl fixed bottom-0 left-0 right-0 z-10 h-20 w-full flex items-center justify-evenly">
+    <div className="bg-[#030612] rounded-t-3xl fixed bottom-0 left-0 right-0 z-10 h-20 w-full flex items-center justify-evenly md:left-0 md:top-0 md:h-screen md:w-20 md:flex-col md:rounded-br-3xl md:rounded-t-none md:rounded-tr-3xl">
       <Link href="/" passHref>
         <a>
           <FaHome

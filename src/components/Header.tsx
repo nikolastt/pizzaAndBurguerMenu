@@ -6,7 +6,7 @@ interface IHeaderProps {
 
 const Header: React.FC<IHeaderProps> = ({ title }) => {
   return (
-    <header className="relative h-[130px]">
+    <header className="relative h-[130px] max-w-2xl mx-auto">
       <div className="flex w-full items-center pt-10">
         <div className="bg-primary-500 w-full absolute z-10  h-1  " />
         <div className="mx-auto bg-gray-900 px-3 z-20 flex justify-center">

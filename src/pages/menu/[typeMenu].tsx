@@ -25,7 +25,7 @@ const Menu: React.FC<IMenu> = ({ data }) => {
   if (path === "pizzas") {
     const arrayProduct = JSON.parse(data) as IPizza[];
     return (
-      <div>
+      <div className="max-w-2xl mx-auto">
         <Header title={path} />
         <div className="px-3  mb-28 md:px-6 md:space-y-9">
           {arrayProduct.map((product, i) => (
@@ -51,7 +51,7 @@ const Menu: React.FC<IMenu> = ({ data }) => {
     return (
       <div>
         <Header title={path} />
-        <div className="px-3  mb-28 md:px-6 md:space-y-9">
+        <div className="px-3  mb-28 md:px-6 md:space-y-9 max-w-2xl mx-auto">
           {arrayProduct.map((product, i) => (
             <Link href={`/${path}/${product.id}`} passHref key={product.name}>
               <a>
