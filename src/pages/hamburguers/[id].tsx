@@ -1,39 +1,38 @@
-import { collection, doc, getDoc, getDocs } from "firebase/firestore";
 import { GetStaticPaths, GetStaticProps } from "next";
 import { useRouter } from "next/router";
 import { ParsedUrlQuery } from "querystring";
 import React, { useState } from "react";
-import { rateProduct } from "../../assets/functionsDataBase";
+import { getProduct, rateProduct } from "../../assets/functionsDataBase";
 import Footer from "../../components/Footer";
 import Header from "../../components/Header";
-import { db } from "../../services/firebase";
 
 import StarRatings from "react-star-ratings";
 import { toast, ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { IPizza } from "../../assets/interfaces";
+import { IHamburguer, IPizza } from "../../assets/interfaces";
 
 interface IParams extends ParsedUrlQuery {
   id: string;
 }
 
-interface IPizzas {
-  pizzaData: string;
+interface IHamburguers {
+  hamburguerData: string;
 }
 
-const Pizzas: React.FC<IPizzas> = ({ pizzaData }) => {
+const Hamburguer: React.FC<IHamburguers> = ({ hamburguerData }) => {
   const [rate, setRate] = useState(0);
   const [canRate, setCanRate] = useState(true);
 
-  const pizza = JSON.parse(pizzaData) as IPizza;
+  const hamburguer = JSON.parse(hamburguerData) as IHamburguer;
   const router = useRouter();
-  const evaluation = (pizza.rate?.rate as number) / (pizza.rate?.qnt as number);
+  const evaluation =
+    (hamburguer.rate?.rate as number) / (hamburguer.rate?.qnt as number);
 
   const handleRated = async (rate: number) => {
     try {
       if (canRate) {
         setRate(rate);
-        await rateProduct("pizzas", pizza.id, rate);
+        await rateProduct("hamburguers", hamburguer.id, rate);
         notifySuccess("Obrigado pela sua avaliação!");
         setCanRate(false);
       } else {
@@ -73,16 +72,16 @@ const Pizzas: React.FC<IPizzas> = ({ pizzaData }) => {
 
   return (
     <div className="">
-      <Header title={pizza.name} />
+      <Header title={hamburguer.name} />
       <div>
         <div className="flex justify-center mt-6">
-          <img src={pizza.img} alt="" className="w-48 h-48 rounded-full" />
+          <img src={hamburguer.img} alt="" className="w-48 h-48 rounded-full" />
         </div>
 
         <div className="mx-6 mt-6">
           <h1 className="text-primary-500 font-['Teko'] text-5xl  pt-3 ">
             <span className="flex justify-between">
-              {pizza.name}
+              {hamburguer.name}
               <div className="flex items-center">
                 <StarRatings
                   rating={evaluation || 0}
@@ -93,48 +92,18 @@ const Pizzas: React.FC<IPizzas> = ({ pizzaData }) => {
                   numberOfStars={5}
                 />
                 <span className="text-sm text-white ml-2 mt-1">
-                  ( {pizza.rate?.qnt || 0} )
+                  ( {hamburguer.rate?.qnt || 0} )
                 </span>
               </div>
             </span>
           </h1>
 
-          <p className="text-lg font-thin mt-6">{pizza.ingredients}</p>
+          <p className="text-lg font-thin mt-6">{hamburguer.ingredients}</p>
 
           <div className="flex flex-col my-12 ">
             <h1 className="font-['Teko'] text-primary-500 text-4xl">
-              Preços :{" "}
+              R$: {hamburguer.amountHamburguer}{" "}
             </h1>
-
-            <div className="flex justify-between my-3">
-              <p className="font-thin">
-                M:{" "}
-                <span className="text-primary-500 font-bold">
-                  {pizza.amountM}
-                </span>
-              </p>
-
-              <p>
-                G:{" "}
-                <span className="text-primary-500 font-bold">
-                  {pizza.amountG}
-                </span>
-              </p>
-
-              <p>
-                GG:{" "}
-                <span className="text-primary-500 font-bold">
-                  {pizza.amountGG}
-                </span>
-              </p>
-
-              <p>
-                ExG:{" "}
-                <span className="text-primary-500 font-bold">
-                  {pizza.amountExG}
-                </span>
-              </p>
-            </div>
           </div>
         </div>
 
@@ -174,7 +143,7 @@ const Pizzas: React.FC<IPizzas> = ({ pizzaData }) => {
   );
 };
 
-export default Pizzas;
+export default Hamburguer;
 
 export const getStaticPaths: GetStaticPaths = async () => {
   return {
@@ -185,13 +154,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 export const getStaticProps: GetStaticProps = async (context) => {
   const { id } = context.params as IParams;
-  const pizzaResponse = await getDoc(doc(db, "pizzas", id));
-  const pizza = { ...pizzaResponse.data(), id: pizzaResponse.id };
-  const pizzaData = JSON.stringify(pizza);
+
+  const hamburguerResponse = await getProduct("hamburguers", id);
+  const hamburguerData = JSON.stringify(hamburguerResponse);
 
   return {
     props: {
-      pizzaData,
+      hamburguerData,
     },
     revalidate: 60 * 60 * 6,
   };

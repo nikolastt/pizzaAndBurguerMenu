@@ -7,7 +7,7 @@ import { IoIosAdd } from "react-icons/io";
 
 const Footer: React.FC = () => {
   const router = useRouter();
-  const path = router.pathname.split("/")[1];
+  const path = router.asPath;
 
   return (
     <div className="bg-[#030612] rounded-t-3xl fixed bottom-0 left-0 right-0 z-10 h-20 w-full flex items-center justify-evenly">
@@ -15,33 +15,37 @@ const Footer: React.FC = () => {
         <a>
           <FaHome
             size={30}
-            color={path === "" ? "#d88c43" : "white"}
+            color={path === "/" ? "#d88c43" : "white"}
             className="cursor-pointer hover:scale-125 duration-300"
           />
         </a>
       </Link>
 
-      <Link href="/pizzaMenu" passHref>
+      <Link href="/menu/pizzas" passHref>
         <a>
           <FaPizzaSlice
             size={30}
-            color={path === "pizzaMenu" ? "#d88c43" : "white"}
+            color={path === "/menu/pizzas" ? "#d88c43" : "white"}
             className="cursor-pointer hover:scale-125 duration-300"
           />
         </a>
       </Link>
 
-      <FaHamburger
-        size={30}
-        color={path === "hamburguer" ? "#d88c43" : "white"}
-        className="cursor-pointer hover:scale-125 duration-300"
-      />
+      <Link href="/menu/hamburguers">
+        <a>
+          <FaHamburger
+            size={30}
+            color={path === "/menu/hamburguers" ? "#d88c43" : "white"}
+            className="cursor-pointer hover:scale-125 duration-300"
+          />
+        </a>
+      </Link>
 
       <Link href="/addItemMenu">
         <a>
           <IoIosAdd
             size={30}
-            color={path === "addItemMenu" ? "#d88c43" : "white"}
+            color={path === "/addItemMenu" ? "#d88c43" : "white"}
             className="cursor-pointer hover:scale-125 duration-300"
           />
         </a>

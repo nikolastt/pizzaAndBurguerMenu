@@ -1,9 +1,13 @@
 import React from "react";
-import { IPizza } from "../assets/functionsDataBase";
+import { IHamburguer, IPizza } from "../assets/interfaces";
 
 interface ICardItem {
   reverse?: boolean;
-  pizza: IPizza;
+  name: string;
+  ingredients: string;
+  img: string;
+  price: string;
+  typeProduct: string;
 }
 
 const truncate = (string: string, number: number) => {
@@ -12,24 +16,29 @@ const truncate = (string: string, number: number) => {
     : string;
 };
 
-const CardItem: React.FC<ICardItem> = ({ reverse, pizza }) => {
+const CardItem: React.FC<ICardItem> = ({
+  reverse,
+  typeProduct,
+  name,
+  ingredients,
+  img,
+  price,
+}) => {
   return (
-    <div className="bg-white/5 p-5 rounded-xl shadow-xl hover:scale-105 duration-300 cursor-pointer">
+    <div className="bg-white/5 p-5 rounded-xl shadow-xl hover:scale-105 duration-300 cursor-pointer my-6">
       <div
         className={`flex  ${reverse && "flex-row-reverse"}  justify-between`}
       >
         <div className={` w-2/3 pr-6 ${reverse && "pr-0 pl-6 "} `}>
           <div className="border-t pt-3 h-full">
-            <h1 className="font-['Teko'] text-4xl text-primary-500 ">
-              {pizza.name}
-            </h1>
-            <p>{truncate(pizza.ingredients, 100)}</p>
+            <h1 className="font-['Teko'] text-4xl text-primary-500 ">{name}</h1>
+            <p>{truncate(ingredients, 100)}</p>
           </div>
         </div>
 
         <div className=" w-1/3 overflow-hidden  flex justify-center items-center">
           <img
-            src={pizza.img}
+            src={img}
             alt="Image product"
             className="w-28 h-28 rounded-full object-cover mx-auto"
           />
@@ -42,8 +51,9 @@ const CardItem: React.FC<ICardItem> = ({ reverse, pizza }) => {
             reverse && "!justify-start"
           } justify-end flex items-center`}
         >
-          A partir de:{" "}
-          <span className="text-primary-500 font-bold ml-2">R$: 36,00</span>
+          {typeProduct === "pizzas" && "A partir de:"}
+
+          <span className="text-primary-500 font-bold ml-2">R$: {price}</span>
         </p>
       </div>
     </div>
